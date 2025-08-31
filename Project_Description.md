@@ -1,4 +1,4 @@
-# Transaction Fraud Detection Project
+# Transaction Anomaly Detection Project
 ## Part 1: Synthesize Transaction Data
 ### Step 1: Create empty data tables in PostgreSQL
 1. Transaction Table:
@@ -82,7 +82,7 @@
   
   transaction_df
 ```
-## Part 2: Identify Unusual Transaction Activity with SQL
+## Part 2: Check for Unusual Transaction Activity with SQL
 ### I. Large Amount of Money Transferred within Short Time Frame
 ```SQL
   SELECT account_id, 
@@ -106,6 +106,7 @@
   								FROM transactions t2
   								WHERE t2.account_id = transactions.account_id)
 ```
+![](query_2_output.png)
 ### III. Burst of Transactions in Short Time Frame
 ```SQL
 SELECT account_id, 
@@ -116,6 +117,7 @@ FROM transactions
 GROUP BY account_id, event_hour
 ORDER BY num_transactions DESC;
 ```
+![](query_3_output.png)
 ### IV. Access from Unexpected Region
 ```SQL
 WITH distance_calc AS (
@@ -144,3 +146,4 @@ CASE
 END AS Out_of_Area
 FROM distance_calc;
 ```
+![](query_4_output.png)
