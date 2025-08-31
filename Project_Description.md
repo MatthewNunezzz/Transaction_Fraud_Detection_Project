@@ -94,6 +94,7 @@
   HAVING SUM(money_amount) > 8000
   ORDER BY total_amount DESC;
 ```
+![](query_1_output.png)
 ### II. Sudden Spending Spike (deviation from average transaction amount)
 ```SQL
   SELECT account_id,
